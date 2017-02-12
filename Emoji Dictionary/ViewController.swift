@@ -12,7 +12,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     @IBOutlet weak var tableViewMain: UITableView!
     
-    var emojis = ["😄","💩","😭","😱","👩🏼","😜","🤠","🤡"]
+    var emojis : [Emoji] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,6 +20,8 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         
         tableViewMain.dataSource = self
         tableViewMain.delegate = self
+        
+        emojis = makeEmojiArray()
         
         
     }
@@ -31,7 +33,8 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         print (indexPath.row)
         let cell = UITableViewCell()
-        cell.textLabel?.text = emojis[indexPath.row]
+        let emoji = emojis[indexPath.row]
+        cell.textLabel?.text = emoji.stringEmoji
         return cell
         
     }
@@ -44,7 +47,7 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         let defVC = segue.destination as! DefinitionViewController
-        defVC.emoji = sender as! String
+        defVC.emoji = sender as! Emoji
         
     }
     
@@ -52,7 +55,60 @@ class ViewController: UIViewController,UITableViewDataSource,UITableViewDelegate
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    
+    func makeEmojiArray() -> [Emoji] {
+        
+        let emoji1 = Emoji()
+        emoji1.stringEmoji = "😄"
+        emoji1.year = 2010
+        emoji1.category = "Smiley"
+        emoji1.definition = "Smiley face"
+        
+        let emoji2 = Emoji()
+        emoji2.stringEmoji = "💩"
+        emoji2.year = 2012
+        emoji2.category = "Thing"
+        emoji2.definition = "Shit face"
+        
+        let emoji3 = Emoji()
+        emoji3.stringEmoji = "😭"
+        emoji3.year = 2014
+        emoji3.category = "Smiley"
+        emoji3.definition = "Cry face"
+        
+        let emoji4 = Emoji()
+        emoji4.stringEmoji = "😱"
+        emoji4.year = 2006
+        emoji4.category = "Smiley"
+        emoji4.definition = "Sacred face"
+        
+        let emoji5 = Emoji()
+        emoji5.stringEmoji = "👩🏼"
+        emoji5.year = 2007
+        emoji5.category = "People"
+        emoji5.definition = "Blonde girl"
+        
+        let emoji6 = Emoji()
+        emoji6.stringEmoji = "😜"
+        emoji6.year = 2011
+        emoji6.category = "Smiley"
+        emoji6.definition = "Winky tounge face"
+        
+        let emoji7 = Emoji()
+        emoji7.stringEmoji = "🤠"
+        emoji7.year = 2009
+        emoji7.category = "Smiley"
+        emoji7.definition = "Cowboy face"
+        
+        let emoji8 = Emoji()
+        emoji8.stringEmoji = "🤡"
+        emoji8.year = 2009
+        emoji8.category = "Smiley"
+        emoji8.definition = "Clown face"
+        
+        return[emoji1,emoji2,emoji3,emoji4,emoji5,emoji6,emoji7,emoji8]
 
+    }
 
 }
 
